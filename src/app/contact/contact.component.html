@@ -1,0 +1,31 @@
+<div class="d-flex justify-content-center">
+
+    <div class="container col-8 col-md-8  col-sm-12 justify-content-around">
+        <div class="row d-flex justify-content-center flex-row p-3 p-md-5 m-md-3 text-center">
+
+            <div class="col-sm  card card-hover ">
+                <label>
+                    <img [ngClass]="{'card-active' : downtownActive, 'clk-image' : true}" src="assets/apexdt-front.PNG" (click)="displayDT()" name="Apex Downtown">
+                    <div class="card-body title-card" > Apex Downtown</div>
+
+                </label>
+            </div>
+
+            <div class="col-1"  ></div>
+
+            <div class="col-sm   card card-hover">
+                <label>
+                    <img  [ngClass]="{'card-active' : !downtownActive, 'clk-image' : true}" src="assets/apexvsl-front.PNG" (click)="displayVSL()"
+                    name="Apex VSL">
+                    <div class="card-body title-card" > Apex VSL</div>
+
+                </label>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="d-flex margin-auto justify-content-center">
+    <div class="border-map" id='map' style='width: 80em; height: 30em;'></div>
+</div>
