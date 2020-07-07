@@ -18,4 +18,8 @@ export class AppComponent {
     public ngZone: NgZone
   ) { }
 
+  lg(){
+    this.authService.SignOut();
+  }
+
 }

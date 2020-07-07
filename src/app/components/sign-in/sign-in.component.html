@@ -15,6 +15,8 @@
         <input type="checkbox"> Remember me</label>
       <a href="forgot-password" class="pull-right">Forgot Password?</a>
     </div>
+    <hr class="my-4">
+    <button  (click)="authService.GoogleAuth()" class="btn btn-md btn-google btn-block text-uppercase" type="submit"> Sign in with Google</button>
   </form>
   <p class="text-center"><a href="register-user ">Create an Account</a></p>
 </div>

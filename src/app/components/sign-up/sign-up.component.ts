@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
+import Utils from 'src/app/utils/utils';
 
 @Component({
   selector: 'app-sign-up',
@@ -8,11 +9,22 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 
 export class SignUpComponent implements OnInit {
-
+  public password: string;
+  public email: string;
+  public name: string;
+  
   constructor(
     public authService: AuthService
   ) { }
 
   ngOnInit() { }
+
+  createAccount() {
+    if (!Utils.validateEmail(this.email)) {
+      window.alert("Invalid email")
+    } else {
+      this.authService.SignUp(this.email, this.password)
+    }
+  }
 
 }

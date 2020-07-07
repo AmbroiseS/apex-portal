@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { FormsModule } from '@angular/forms';
+import Utils from '../../utils/utils'
 
 @Component({
   selector: 'app-sign-in',
@@ -19,17 +20,13 @@ export class SignInComponent implements OnInit {
 
   ngOnInit() { }
 
-  validateEmail(email) {
-    var re: RegExp = /\S+@\S+\.\S+/;
-    return re.test(email);
-  }
-
   logIn() {
-     if (!this.validateEmail(this.email)) {
+    if (!Utils.validateEmail(this.email)) {
       window.alert("Invalid email")
     } else {
       this.authService.SignIn(this.email, this.password)
-    } 
+    }
   }
+
 
 }

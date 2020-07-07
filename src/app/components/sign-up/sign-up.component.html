@@ -1,35 +1,35 @@
-<div class="displayTable">
-    <div class="displayTableCell">
-
-      <div class="authBlock">
-        <h3>Sign Up</h3>
-
-        <div class="formGroup">
-          <input type="email" class="formControl" placeholder="Email Address" #userEmail required>
-        </div>
-
-        <div class="formGroup">
-          <input type="password" class="formControl" placeholder="Password" #userPwd required>
-        </div>
-
-        <div class="formGroup">
-          <input type="button" class="btn btnPrimary" value="Sign Up" (click)="authService.SignUp(userEmail.value, userPwd.value)">
-        </div>
-
-        <div class="formGroup">
-          <span class="or"><span class="orInner">Or</span></span>
-        </div>
-
-        <!-- Continue with Google -->
-        <div class="formGroup">
-          <button type="button" class="btn googleBtn" (click)="authService.GoogleAuth()">
-            <i class="fab fa-google-plus-g"></i>
-            Continue with Google
-          </button>
-        </div>
-
-      <div class="redirectToLogin">
-        <span>Already have an account? <span class="redirect" routerLink="/sign-in">Log In</span></span>
-      </div>
+<div class="login-form">
+  <form >
+    <h2 class="text-center">Create an account</h2>
+    <div class="form-group">
+      <input type="text" [(ngModel)] = "name" class="form-control" name="name" placeholder="Name and Surname" required="required">
     </div>
+    <div class="form-group">
+      <input type="text" [(ngModel)] = "email" class="form-control" name="email" placeholder="Email" required="required">
+    </div>
+    <div class="form-group">
+      <input type="password" [(ngModel)] = "password" name="password" class="form-control" placeholder="Password" required="required">
+    </div>
+    <div class="form-group">
+      <button  (click)="createAccount()" type="submit" class="btn btn-primary btn-block">Create</button>
+    </div>
+    <div class="d-flex flex-column flex-md-row justify-content-between">
+      <label class="pull-left checkbox-inline">
+        <input type="checkbox"> Remember me</label>
+      <a href="forgot-password" class="pull-right">Forgot Password?</a>
+    </div>
+    <hr class="my-4">
+    <button (click)="authService.GoogleAuth()" class="btn btn-md btn-google btn-block text-uppercase" type="submit"> Sign in with Google</button>
+  </form>
+  <p class="text-center"><a href="sign-in">Login instead</a></p>
+</div>
+
+<div class="col-5 alert alert-secondary login-messages" role="alert">
+  <ul>
+    <li>
+      Login to access to resources and reservations.
+    </li>
+    <li>
+      Your account has to be approved by an Apex Member before you gain access to all features.</li>
+  </ul>
 </div>
