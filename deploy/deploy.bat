@@ -6,4 +6,4 @@ call git add ../docs/
 call git status
 PAUSE
 call git commit -m "[Deploy] --deploy by script--"
-call git push master origin
+call git push origin master
