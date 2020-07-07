@@ -1,3 +1,6 @@
+.login-form{width:380px;margin:50px auto}.login-messages{margin:auto;justify-content:center;display:flex}.login-form form{margin-bottom:15px;background:#f7f7f7;box-shadow:0 2px 2px rgba(0,0,0,.3);padding:30px}.login-form h2{margin:0 0 15px}.btn,.form-control{min-height:38px;border-radius:2px}.btn{font-size:15px;font-weight:700}.w3-panel{margin:24px -32px;padding:16px 32px}
+
+
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
