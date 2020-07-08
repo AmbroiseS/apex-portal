@@ -1,11 +1,11 @@
 .container {
-    max-width: 960px;
+    max-width: auto;
   }
-  
+
   /*
    * Custom translucent site header
    */
-  
+
   .site-header {
     background-color: rgba(0, 0, 0, .85);
     -webkit-backdrop-filter: saturate(180%) blur(20px);
@@ -25,16 +25,31 @@
     width: 40px;
     height: 40px;
 }
-  
+
+.login-container {
+  float: right;
+ 
+}
+
+.crossed {
+  text-decoration: line-through;
+}
+
+.login-button {
+  padding: 6px;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+}
   /*
    * Dummy devices (replace them with your own or something else entirely!)
    */
-  
+
   .product-device {
     width: 300px;
     height: auto;
   }
-  
+
   .product-device-2 {
     top: -25%;
     right: auto;
@@ -42,12 +57,12 @@
     left: 5%;
     background-color: #e5e5e5;
   }
-  
-  
+
+
   /*
    * Extra utilities
    */
-  
+
   .flex-equal > * {
     -ms-flex: 1;
     flex: 1;
@@ -58,6 +73,5 @@
       flex: 1;
     }
   }
-  
+
   .overflow-hidden { overflow: hidden; }
-  

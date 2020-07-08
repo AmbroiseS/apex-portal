@@ -4,9 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
-import { ContactComponent } from './contact/contact.component';
 
 import { AngularFireModule, FirebaseOptions } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -15,26 +13,35 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { firebaseConfig } from '../environments/environment';
 
-import { SignInComponent } from './components/sign-in/sign-in.component';
-import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 
 import { AuthService } from 'src/app/shared/services/auth.service';
 
+import {HomeComponent} from 'src/app/components/apex/home/home.component'
+import {ContactComponent} from 'src/app/components/apex/contact/contact.component'
+import {SignUpComponent} from 'src/app/components/security/sign-up/sign-up.component'
+import {SignInComponent} from 'src/app/components/security/sign-in/sign-in.component'
+import {ForgotPasswordComponent} from 'src/app/components/security/forgot-password/forgot-password.component'
+import {VerifyEmailComponent} from 'src/app/components/security/verify-email/verify-email.component'
+
 import { AuthGuard } from "./shared/guard/auth.guard";
 import { SecureInnerPagesGuard } from "./shared/guard/secure-inner-pages.guard.ts.guard";
-
+import { ReservationComponent } from './components/apex/reservation/reservation.component';
+import { LearningComponent } from './components/apex/learning/learning.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     ContactComponent,
+    ReservationComponent,
+    LearningComponent,
+    ContactComponent,
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    ReservationComponent,
+    LearningComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,13 @@ import { SecureInnerPagesGuard } from "./shared/guard/secure-inner-pages.guard.t
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: '', component: HomeComponent },
-      { path: 'contact', component: ContactComponent, canActivate: [AuthGuard] },
+      { path: 'contact', component: ContactComponent },
+
+      //protected by sign in 
+      { path: 'learning', component: LearningComponent, canActivate: [AuthGuard] },
+      { path: 'reservation', component: ReservationComponent, canActivate: [AuthGuard] },
+
+      //protected when signed in
       { path: 'sign-in', component: SignInComponent, canActivate: [SecureInnerPagesGuard] },
       { path: 'register-user', component: SignUpComponent, canActivate: [SecureInnerPagesGuard] },
       { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
