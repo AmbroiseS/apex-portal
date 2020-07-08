@@ -28,19 +28,20 @@
 
 .login-container {
   float: right;
- 
+}
+
+.hide-login {
+  display: none;
+}
+.show-login {
+  display: block;
+
 }
 
 .crossed {
   text-decoration: line-through;
 }
 
-.login-button {
-  padding: 6px;
-  font-size: 17px;
-  border: none;
-  cursor: pointer;
-}
   /*
    * Dummy devices (replace them with your own or something else entirely!)
    */

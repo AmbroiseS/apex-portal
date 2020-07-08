@@ -27,6 +27,7 @@ import { AuthGuard } from "./shared/guard/auth.guard";
 import { SecureInnerPagesGuard } from "./shared/guard/secure-inner-pages.guard.ts.guard";
 import { ReservationComponent } from './components/apex/reservation/reservation.component';
 import { LearningComponent } from './components/apex/learning/learning.component';
+import { ScheduleComponent } from './components/apex/schedule/schedule.component';
 
 @NgModule({
   declarations: [
@@ -35,13 +36,15 @@ import { LearningComponent } from './components/apex/learning/learning.component
     ContactComponent,
     ReservationComponent,
     LearningComponent,
+    ScheduleComponent,
     ContactComponent,
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
     ReservationComponent,
-    LearningComponent
+    LearningComponent,
+    ScheduleComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +58,7 @@ import { LearningComponent } from './components/apex/learning/learning.component
       { path: 'home', component: HomeComponent },
       { path: '', component: HomeComponent },
       { path: 'contact', component: ContactComponent },
+      { path: 'schedule', component: ScheduleComponent },
 
       //protected by sign in 
       { path: 'learning', component: LearningComponent, canActivate: [AuthGuard] },
