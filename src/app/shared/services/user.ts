@@ -5,3 +5,11 @@ export interface User {
    photoURL: string;
    emailVerified: boolean;
 }
+
+export interface DisplayedUser {
+   uid: string;
+   displayName: string;
+   email: string;
+   approvedByStaff : String;
+   
+}

@@ -11,6 +11,7 @@ import { ContactComponent } from './contact/contact.component';
 import { AngularFireModule, FirebaseOptions } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 
 import { firebaseConfig } from '../environments/environment';
 
@@ -42,6 +43,7 @@ import { SecureInnerPagesGuard } from "./shared/guard/secure-inner-pages.guard.t
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
+    AngularFireDatabaseModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: '', component: HomeComponent },

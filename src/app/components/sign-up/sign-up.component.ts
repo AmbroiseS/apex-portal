@@ -23,7 +23,7 @@ export class SignUpComponent implements OnInit {
     if (!Utils.validateEmail(this.email)) {
       window.alert("Invalid email")
     } else {
-      this.authService.SignUp(this.email, this.password)
+      this.authService.signUp(this.email, this.password, this.name);
     }
   }
 
