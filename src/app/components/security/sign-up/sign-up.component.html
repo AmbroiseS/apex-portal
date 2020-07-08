@@ -16,12 +16,12 @@
     <div class="d-flex flex-column flex-md-row justify-content-between">
       <label class="pull-left checkbox-inline">
         <input type="checkbox"> Remember me</label>
-      <a href="forgot-password" class="pull-right">Forgot Password?</a>
+      <a routerLink="/forgot-password" class="pull-right">Forgot Password?</a>
     </div>
     <hr class="my-4">
     <button (click)="authService.googleAuth()" class="btn btn-md btn-google btn-block text-uppercase" type="submit"> Sign in with Google</button>
   </form>
-  <p class="text-center"><a href="sign-in">Login instead</a></p>
+  <p class="text-center"><a routerLink="/sign-in">Login instead</a></p>
 </div>
 
 <div class="col-5 alert alert-secondary login-messages" role="alert">

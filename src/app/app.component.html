@@ -1,48 +1,48 @@
-  <nav class=" navbar site-header navbar-expand-lg navbar-dark bg-dark ">
-    <a class=" py-2 navbar-brand" href="home" aria-label="Product">
-      <img class="rounded-logo" src="assets/apex.jpg" alt="Apex">
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse"
-     data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="container d-flex flex-column flex-md-row navbar-nav mr-auto justify-content-between">
-        <li class="nav-item active">
-          <a class="d-md-inline-block nav-item nav-link active" href="home">Accueil</a>
-        </li>
+<nav class=" navbar site-header navbar-expand-lg navbar-dark bg-dark ">
+  <a class=" py-2 navbar-brand" routerLink="/home" aria-label="Product">
+    <img class="rounded-logo" src="assets/apex.jpg" alt="Apex">
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="container d-flex flex-column flex-md-row navbar-nav mr-auto justify-content-between">
+      <li class="nav-item active">
+        <a class="d-md-inline-block nav-item nav-link active" routerLink="home">Accueil</a>
+      </li>
 
-        <li class="nav-item ">
-          <a class="d-md-inline-block nav-item nav-link" href="contact">Contact</a>
-         </li>
+      <li class="nav-item ">
+        <a class="d-md-inline-block nav-item nav-link" routerLink="/contact">Contact</a>
+      </li>
 
-        <li class="nav-item ">
-          <a class="d-md-inline-block nav-item nav-link" href="schedule">Horaires</a>
-        </li>
+      <li class="nav-item ">
+        <a class="d-md-inline-block nav-item nav-link" routerLink="/schedule">Horaires</a>
+      </li>
 
-        <li class="nav-item ">
-          <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false}" href="learning">Apprentissage</a>
-        </li>
+      <li class="nav-item ">
+        <a
+          [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false}"
+          routerLink="/learning">Apprentissage</a>
+      </li>
 
-        <li class="nav-item ">
-          <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false}" href="reservation">Reservations</a>
-         </li>
+      <li class="nav-item ">
+        <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false}"
+          routerLink="/reservation">Reservations</a>
+      </li>
 
-         <li [ngClass]="{'nav-item':true, 'hide-login' : authService.isLoggedIn==true, 'show-login' :authService.isLoggedIn==false}">
-             <a [ngClass]="{'d-md-inline-block':true,
-             'nav-item':true,
-              'nav-link':true
-               }"href="sign-in">Login/Create Account</a>
-         </li>
+      <li
+        [ngClass]="{'nav-item':true, 'hide-login' : authService.isLoggedIn==true, 'show-login' :authService.isLoggedIn==false}">
+        <a [ngClass]="{ 'hide-login' : authService.isLoggedIn==true,
+               'show-login' :authService.isLoggedIn==false, 'd-md-inline-block':true,  'nav-item' :true,  'nav-link': true}"
+          routerLink="/sign-in">Login/Create Account</a>
+      </li>
 
-      </ul>
-
-
-
-    </div>
-  </nav>
+    </ul>
+  </div>
+</nav>
 
 
-  <button [ngClass]="{'hide-login' : authService.isLoggedIn==false, 'show-login' :authService.isLoggedIn==true}" type="button" (click)="lg()" class="btn btn-success">log out </button>
-
+<button [ngClass]="{'hide-login' : authService.isLoggedIn==false, 'show-login' :authService.isLoggedIn==true}"
+  type="button" (click)="lg()" class="btn btn-success">log out </button>
 <router-outlet></router-outlet>
