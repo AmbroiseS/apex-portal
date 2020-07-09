@@ -21,14 +21,4 @@ export class AppComponent {
   ) { }
 
 
-
-  lg() {
-    /* this.dbService.getUserByUid((JSON.parse(localStorage.getItem('user'))).uid).subscribe(u => {
-      console.log(u); // Check the returned values;
-    });
-    console.log((JSON.parse(localStorage.getItem('user'))).uid); */
-
-    this.authService.signOut();
-  }
-
 }
