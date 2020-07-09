@@ -1,24 +1,24 @@
-<div class="d-flex justify-content-center">
+<div class="d-flex">
 
-    <div class="container col-8 col-md-8  col-sm-12 justify-content-around">
-        <div class="row d-flex justify-content-center flex-row p-3 p-md-5 m-md-3 text-center">
+    <div class="container col-8 col-md-8  col-sm-12 ">
+        <div class="row justify-content-center text-center">
 
-            <div class="col-sm  card card-hover ">
+            <div [ngClass]="{'card-active' : downtownActive, 'col-sm-2':true,   'card':true, 'card-image':true,  'card-hover':true}"
+                (click)="displayDT()">
                 <label>
-                    <img [ngClass]="{'card-active' : true, 'clk-image' : true}" src="assets/apexdt-front.PNG" (click)="displayDT()" name="Apex Downtown">
-                    <div class="card-body title-card" > Apex Downtown</div>
-
+                    <img class="clk-image" src="assets/apexdt-front.PNG" name="Apex Downtown">
+                    <div class=" title-card"> Apex Downtown</div>
                 </label>
             </div>
 
-            <div class="col-1"  ></div>
+            <div class="col-1"></div>
 
-            <div class="col-sm   card card-hover">
+            <div [ngClass]="{'card-active' : !downtownActive, 'col-sm-2':true,  'w-50' :true ,'card':true, 'card-image':true, 'card-hover':true}"
+                (click)="displayVSL()">
+
                 <label>
-                    <img  [ngClass]="{'card-active' : !downtownActive, 'clk-image' : true}" src="assets/apexvsl-front.PNG" (click)="displayVSL()"
-                    name="Apex VSL">
-                    <div class="card-body title-card" > Apex VSL</div>
-
+                    <img class="clk-image" src="assets/apexvsl-front.PNG" name="Apex VSL">
+                    <div class="title-card"> Apex VSL</div>
                 </label>
             </div>
         </div>
@@ -26,6 +26,38 @@
     </div>
 </div>
 
-<div class="d-flex margin-auto justify-content-center">
-    <div class="border-map" id='map' style='width: 80em; height: 30em;'></div>
+<div *ngIf="downtownActive" class="container bg-grey justify-content-center margin-auto"  style='width: 40rem;' >
+    <div class="row card m-3 p-3">
+        <div>
+            <p>
+                <fa-icon [icon]="faMapMarkerAlt"></fa-icon> 1827 Rue Sainte-Catherine O, Montréal, QC H3H 1M2
+            </p>
+            <p>
+                <fa-icon [icon]="faPhone"></fa-icon> +15145285000
+            </p>
+            <p>
+                <fa-icon [icon]="faEnvelope"></fa-icon> apexmuaythai@hotmail.com
+            </p>
+        </div>
+    </div>
+</div>
+<div *ngIf="!downtownActive"  class="container bg-grey justify-content-center margin-auto"  style='width: 40rem;' >
+    <div class="row card m-3 p-3">
+        <div>
+            <p>
+                <fa-icon [icon]="faMapMarkerAlt"></fa-icon> 750 Boulevard Décarie, Saint-Laurent, QC H4L 3L5
+            </p>
+            <p>
+                <fa-icon [icon]="faPhone"></fa-icon> +15147488717
+            </p>
+            <p>
+                <fa-icon [icon]="faEnvelope"></fa-icon> apexmuaythai@hotmail.com
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<div class="d-flex container margin-auto justify-content-center">
+    <div class="border border-2" id='map' style='width: 80em; height: 30em;'></div>
 </div>

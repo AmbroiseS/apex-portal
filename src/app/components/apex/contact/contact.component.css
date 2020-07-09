@@ -1,36 +1,33 @@
 .clk-image {
-
     object-fit: cover;
-    width: 100%;
-    height: 250px;
+    width: 75%;
+    height: 70px;
  }
 
  .title-card  {
-     font-size: large;
-     color: dimgray;
+     font-size:  small;
+     color: darkslategrey;
      font-weight: bold;
      font-style: oblique;
  }
- .card {
-     border: 0.5 rem solid;
-     border-color: white;
-     margin: 1.5 em;
+
+ .card-image {
+     width: 100px !important;
+     height: 120px;
      padding: 0.5em;
-     background-color:bisque;
+     background-color:paleturquoise;
  }
 
  .card-active {
-    border-color: coral;
-
+    border-color: midnightblue;
  }
 
 .card-hover:hover {
-    border-color: coral;
-
+    border-color: midnightblue;
 }
 
 
 .border-map {
-    border: 20 rem solid;
+    border: 50 px solid;
     border-color: black;
 }

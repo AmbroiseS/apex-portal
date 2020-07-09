@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
+import { faMapMarkerAlt, faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import {style, state, animate, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-contact',
@@ -7,7 +9,11 @@ import mapboxgl from 'mapbox-gl'; // or "const mapboxgl = require('mapbox-gl');"
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  downtownActive = true;
+  faMapMarkerAlt = faMapMarkerAlt;
+  faPhone = faPhone;
+  faEnvelope = faEnvelope;
+
+ public downtownActive = true;
   markerDownton: mapboxgl.Marker;
   markerVSL: mapboxgl.Marker;
   map: mapboxgl.Map;
@@ -20,7 +26,6 @@ export class ContactComponent implements OnInit {
   ngOnInit() {
 
   }
-
 
   displayDT() {
     this.downtownActive = true;
