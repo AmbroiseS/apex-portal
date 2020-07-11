@@ -1,7 +1,9 @@
-<nav class="navbar  navbar-expand-lg navbar-defaut fixed-top" (scroll)="onScroll($event)">
-  <a class=" py-2 navbar-brand" routerLink="/home" aria-label="Product">
-    <img class="rounded-logo" src="assets/apex.jpg" alt="Apex">
+<nav class="navbar  navbar-expand-lg fixed-top"  (scroll)="onScroll($event)">
+  <a class=" py-2 navbar-brand" routerLink="/home"  (click)="itemClicked('accueil')" aria-label="Product">
+    <img class="rounded-logo" src="assets/APEX_Logo_glow.png" alt="Apex">
   </a>
+  <span class="mr-auto nav-title  ">Apex Muay Thai Montreal</span>
+
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -62,4 +64,4 @@
   </div>
 </nav>
 
-<router-outlet ></router-outlet>
+<router-outlet ><div id="pad_id" class="p-bottom" ></div></router-outlet>

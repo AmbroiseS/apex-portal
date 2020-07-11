@@ -21,27 +21,7 @@ export class AppComponent {
     public ngZone: NgZone
   ) { }
 
-  scrollInterval = undefined;
-  lastScroll = false;
-  myScroll() {
-    console.log('zef')
-    this.lastScroll = true;
-    if (!this.scrollInterval) {
-      //scroll has started, do some coloring
-      this.lastScroll = false;
-      this.scrollInterval = setTimeout(function () {
-        if (!this.lastScroll) {
-          //scroll has ended, revert the coloring
-          this.scrollInterval = clearInterval(this.scrollInterval);
-        }
-        this.lastScroll = false;
-      }, 100);
-    } else {
-      this.lastScroll = true;
-    }
-  }
   @HostListener('window:scroll', ['$event']) // for window scroll events
-
   onScroll(event) {
     this.drawNavBarColor();
   }
@@ -65,13 +45,23 @@ export class AppComponent {
   transparentNavBar() {
     let element = document.querySelector('.navbar');
     element.classList.remove('navbar-dark');
+    element.classList.add('navbar-light');
     element.classList.remove('site-header');
+    if(!this.forceBlackNav){
+      let element = document.querySelector('#pad_id');
+      element.classList.remove('p-bottom');
+    }
   }
 
   blackNavbar() {
     let element = document.querySelector('.navbar');
     element.classList.add('navbar-dark');
+    element.classList.remove('navbar-light');
     element.classList.add('site-header');
+    if(this.forceBlackNav){
+      let element = document.querySelector('#pad_id');
+      element.classList.add('p-bottom');
+    }
   }
 
   itemClicked(name) {

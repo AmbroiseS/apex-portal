@@ -20,6 +20,11 @@
     text-decoration: none;
   }
 
+  .nav-title {
+    color: #ffffff;
+    font-size: 1.5em;
+  }
+
 .rounded-logo {
     border-radius: 50%;
     width: 40px;
@@ -66,7 +71,6 @@
     background-color: #e5e5e5;
   }
 
-
   /*
    * Extra utilities
    */
@@ -81,3 +85,11 @@
       flex: 1;
     }
   }
+  .p-bottom {
+    padding-bottom: 50px;
+  }
+
+  .navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+ 
