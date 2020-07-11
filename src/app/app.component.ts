@@ -47,7 +47,7 @@ export class AppComponent {
     element.classList.remove('navbar-dark');
     element.classList.add('navbar-light');
     element.classList.remove('site-header');
-    if(!this.forceBlackNav){
+    if (!this.forceBlackNav) {
       let element = document.querySelector('#pad_id');
       element.classList.remove('p-bottom');
     }
@@ -58,7 +58,7 @@ export class AppComponent {
     element.classList.add('navbar-dark');
     element.classList.remove('navbar-light');
     element.classList.add('site-header');
-    if(this.forceBlackNav){
+    if (this.forceBlackNav) {
       let element = document.querySelector('#pad_id');
       element.classList.add('p-bottom');
     }
