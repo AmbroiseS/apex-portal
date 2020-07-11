@@ -2,6 +2,9 @@ import { Component, NgZone, HostListener } from '@angular/core';
 import { AuthService } from "./shared/services/auth.service";
 import { Router } from "@angular/router";
 import { DatabaseService } from './shared/services/database.service';
+import { filter } from "rxjs/operators";
+import { Event as NavigationEvent } from "@angular/router";
+import { NavigationStart } from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -19,7 +22,16 @@ export class AppComponent {
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone
-  ) { }
+  ) {
+    router.events
+      .pipe(filter((event: NavigationEvent) => { return (event instanceof NavigationStart); }))
+      .subscribe(
+        (event: NavigationStart) => {
+          this.forceBlackNav = event.url != "/home";
+          this.drawNavBarColor();
+        }
+      );
+  }
 
   @HostListener('window:scroll', ['$event']) // for window scroll events
   onScroll(event) {
@@ -33,13 +45,11 @@ export class AppComponent {
       let element = document.querySelector('.navbar');
       if (window.pageYOffset > element.clientHeight) {
         this.blackNavbar();
-
       } else {
         this.transparentNavBar();
 
       }
     }
-
   }
 
   transparentNavBar() {
@@ -62,11 +72,6 @@ export class AppComponent {
       let element = document.querySelector('#pad_id');
       element.classList.add('p-bottom');
     }
-  }
-
-  itemClicked(name) {
-    this.forceBlackNav = name != "accueil";
-    this.drawNavBarColor();
   }
 
 }
