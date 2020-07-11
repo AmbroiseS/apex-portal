@@ -1,4 +1,4 @@
-<nav class="navbar  navbar-expand-lg fixed-top"  (scroll)="onScroll($event)">
+<nav class="navbar navbar-light navbar-expand-lg fixed-top"  (scroll)="onScroll($event)">
   <a class=" py-2 navbar-brand" routerLink="/home"  (click)="itemClicked('accueil')" aria-label="Product">
     <img class="rounded-logo" src="assets/APEX_Logo_glow.png" alt="Apex">
   </a>
@@ -44,7 +44,7 @@
 
     <ul *ngIf="!authService.isLoggedIn" class="nav navbar-nav navbar-right">
       <li class="nav-item">
-        <a class=" nav-item nav-link"
+        <a class=" nav-item nav-link" (click)="itemClicked('sign-in')"
            routerLink="/sign-in">Login/Create Account</a>
       </li>
     </ul>
