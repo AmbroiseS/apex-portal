@@ -29,6 +29,7 @@ import { ReservationComponent } from './components/apex/reservation/reservation.
 import { LearningComponent } from './components/apex/learning/learning.component';
 import { ScheduleComponent } from './components/apex/schedule/schedule.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
       { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
       { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] }]
     ),
-    FontAwesomeModule
+    FontAwesomeModule,
+    NgbCollapseModule
   ],
 
   providers: [AuthService],

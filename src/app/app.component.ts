@@ -13,9 +13,8 @@ import { NavigationStart } from "@angular/router";
 })
 
 export class AppComponent {
-  title = 'apex-portal';
-  selected_menu = "home";
   forceBlackNav = false;
+  toggleNavbar = true;
 
   constructor(
     public dbService: DatabaseService,
@@ -29,6 +28,8 @@ export class AppComponent {
         (event: NavigationStart) => {
           this.forceBlackNav = event.url != "/home";
           this.drawNavBarColor();
+          this.toggleNavbar = true;
+          this.setActive(event.url);
         }
       );
   }
@@ -73,5 +74,22 @@ export class AppComponent {
       element.classList.add('p-bottom');
     }
   }
+  listAcivablesLinks = ['#home', '#contact', '#schedule', '#learning', '#reservation', '#sign-in']
+  setActive(url: string) {
+    this.listAcivablesLinks.forEach(element => {
+      console.log(element)
+      let t = document.querySelector(element);
+      if (t)
+        t.classList.remove('active');
+    });
 
+    if (url == '/')
+      url = '/home'
+    let t = document.querySelector('#' + url.replace('/', ''));
+    t.classList.add('active');
+
+
+  }
 }
+
+

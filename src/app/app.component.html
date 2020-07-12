@@ -1,42 +1,39 @@
 <nav class="navbar navbar-light navbar-expand-lg fixed-top" (scroll)="onScroll($event)">
   <div class="flex align-items-center">
-    <a class=" py-2 navbar-brand" routerLink="/home"  aria-label="Product">
+    <a class=" py-2 navbar-brand" routerLink="/home" aria-label="Product">
       <img class="rounded-logo" src="assets/APEX_Logo_glow.png" alt="Apex">
     </a>
     <span class="mr-auto nav-title  ">Apex Muay Thai Montreal</span>
   </div>
 
   <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse"
-    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+    (click)="toggleNavbar = !toggleNavbar" aria-controls="navbarSupportedContent" aria-expanded="false"
     aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="toggleNavbar">
     <ul class="container d-flex flex-column flex-md-row navbar-nav navbar-right mr-auto justify-content-between">
-      <li class="nav-item active">
-        <a class="d-md-inline-block nav-item nav-link active" 
-          routerLink="home">Accueil</a>
+      <li class="nav-item active" id="home">
+        <a class="d-md-inline-block nav-item nav-link" routerLink="/home">Accueil</a>
       </li>
 
-      <li class="nav-item ">
-        <a class="d-md-inline-block nav-item nav-link" 
-          routerLink="/contact">Contact</a>
+      <li class="nav-item " id="contact">
+        <a class="d-md-inline-block nav-item nav-link" routerLink="/contact">Contact</a>
       </li>
 
-      <li class="nav-item ">
-        <a class="d-md-inline-block nav-item nav-link" 
-          routerLink="/schedule">Horaires</a>
+      <li class="nav-item " id="schedule">
+        <a class="d-md-inline-block nav-item nav-link" routerLink="/schedule">Horaires</a>
       </li>
 
-      <li class="nav-item ">
+      <li class="nav-item " id="learning">
         <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false}"
-           routerLink="/learning">Apprentissage</a>
+          routerLink="/learning">Apprentissage</a>
       </li>
 
-      <li class="nav-item ">
+      <li class="nav-item " id="reservation">
         <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false}"
-           routerLink="/reservation">Reservations</a>
+          routerLink="/reservation">Reservations</a>
       </li>
     </ul>
 
@@ -44,7 +41,7 @@
       src="{{authService.getUser().photoURL}}" alt="userImage">
 
     <ul *ngIf="!authService.isLoggedIn" class="nav navbar-nav navbar-right">
-      <li class="nav-item">
+      <li class="nav-item" id="sign-in">
         <a class=" nav-item nav-link" routerLink="/sign-in">Login/Create Account</a>
       </li>
     </ul>
