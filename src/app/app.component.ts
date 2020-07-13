@@ -26,7 +26,7 @@ export class AppComponent {
       .pipe(filter((event: NavigationEvent) => { return (event instanceof NavigationStart); }))
       .subscribe(
         (event: NavigationStart) => {
-          this.forceBlackNav = event.url != "/home";
+          this.forceBlackNav = event.url != "/home" && event.url!= "/";
           this.drawNavBarColor();
           this.toggleNavbar = true;
           this.setActive(event.url);
