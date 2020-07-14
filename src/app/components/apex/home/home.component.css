@@ -22,7 +22,7 @@
     bottom: 0;
     min-width: 100%;
     min-height: 100%;
-    z-index: -1;
+    z-index: -3;
   }
 
   .first-page {
@@ -31,11 +31,12 @@
     background-repeat: no-repeat;
     position: fixed;
     min-width: 100%;
-    z-index: -1;
+    z-index: -2;
   }  
 
   .filler-full {
     min-height:100vh;
+    z-index: -5;
   }
   
   .filler-30 {
@@ -50,15 +51,6 @@
     background-color: white;
   }
 
-  .first-message {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    text-align: center;
-    min-height: 60vh;
-    min-width: 100%;
-  }
 
   .text-first-message {
     color: rgb(209, 202, 202);
@@ -73,7 +65,10 @@
       justify-content: center;
       flex-direction: column;
       width: 100%;
+
   }
+
+
 
   /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
 @media screen and (min-width: 601px) {
@@ -87,6 +82,20 @@
     padding-top: 70px;
       color: white;
       font-size: 1.6em;
+  }
+  
+  .first-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    min-height: 60vh;
+    min-width: 100%;
+  }
+  .center-image{
+    width: auto;
+    height:100vh;
   }
 
 }
@@ -104,4 +113,15 @@
       color: white;
       font-size: 1em;
     }   
+    
+  .first-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    min-height: 60vh;
+    min-width: 100%;
+    padding-top: 35px;
+  }
 }

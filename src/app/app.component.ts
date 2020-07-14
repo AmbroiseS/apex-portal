@@ -77,7 +77,6 @@ export class AppComponent {
   listAcivablesLinks = ['#home', '#contact', '#schedule', '#learning', '#reservation', '#sign-in']
   setActive(url: string) {
     this.listAcivablesLinks.forEach(element => {
-      console.log(element)
       let t = document.querySelector(element);
       if (t)
         t.classList.remove('active');
