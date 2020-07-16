@@ -48,15 +48,12 @@
   } 
   
   .white {
-    background-color: white;
+    background-color: rgb(54, 54, 54);
   }
 
 
-  .text-first-message {
-    color: rgb(209, 202, 202);
-    font-size: large;
+  
 
-  }
 
   .image-girl {
       height:auto;
@@ -67,7 +64,6 @@
       width: 100%;
 
   }
-
 
 
   /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
@@ -90,14 +86,28 @@
     justify-content: center;
     flex-direction: column;
     text-align: center;
-    min-height: 60vh;
+    min-height: 100vh;
     min-width: 100%;
+    padding: 20px;
   }
   .center-image{
     width: auto;
     height:100vh;
   }
 
+  .text-first-message {
+    color: rgb(209, 202, 202);
+    font-size: 1.7em;
+    /* largeur | style */
+    border: 1px solid;
+    padding: 30px;
+
+  }
+
+  .title-text-first-message {
+    color: rgb(209, 202, 202);
+    font-size: 2em;
+  }
 }
 
 /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
@@ -122,6 +132,17 @@
     text-align: center;
     min-height: 60vh;
     min-width: 100%;
-    padding-top: 35px;
+    padding: 20px;
   }
+
+  .text-first-message {
+    color: rgb(209, 202, 202);
+    font-size: 1.5em;
+  }
+
+  .title-text-first-message {
+    color: rgb(209, 202, 202);
+    font-size: 1.7em;
+  }
+
 }

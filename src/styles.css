@@ -1,6 +1,20 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/mapbox-gl/dist/mapbox-gl.css';
 
+@font-face {
+  font-family: 'Abel Regular';
+  src: url('assets/fonts/Abel-Regular.ttf') format("opentype");
+}
+
+
+body {
+  font-family: 'Abel Regular' !important;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+  margin: 0;
+}
+
 
 .login-form {
     width: 380px;
