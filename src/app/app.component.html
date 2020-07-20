@@ -35,6 +35,10 @@
         <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false}"
           routerLink="/reservation">Reservations</a>
       </li>
+       <li class="nav-item " id="admin">
+        <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true }"
+          routerLink="/admin">Admin</a>
+      </li>
     </ul>
 
     <img *ngIf="authService.isLoggedIn" class="rounded-logo-user navbar-right d-none d-lg-block"

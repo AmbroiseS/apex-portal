@@ -1,0 +1,33 @@
+<div class="row center-cols">
+
+
+        <form class="form-inline mb-3 mt-5">
+            <input class="form-control mr-sm-2" (ngModelChange)="search($event)" name="search-bar" [(ngModel)]="searchInput" type="search" placeholder="Email, DisplayNames" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search User</button>
+        </form>
+    <div class="col-8 ">
+            <table class="table table-sm table-dark table-hover">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Display Name</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Creation</th>
+                        <th scope="col">Last Sign In</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let u of searchedUsers;let i = index">
+                        <th scope="row">{{i}}</th>
+                        <td>{{u.email}}</td>
+                        <td>{{u.displayName}}</td>
+                        <td>{{u.role}}</td>
+                        <td>{{u.creationTime}}</td>
+                        <td>{{u.lastSignInTime}}</td>
+                    </tr>
+
+                </tbody>
+            </table>
+    </div>
+</div>

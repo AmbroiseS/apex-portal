@@ -10,6 +10,7 @@ import { AngularFireModule, FirebaseOptions } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
+import { HttpClientModule } from '@angular/common/http';
 
 import { firebaseConfig } from '../environments/environment';
 
@@ -30,6 +31,9 @@ import { LearningComponent } from './components/apex/learning/learning.component
 import { ScheduleComponent } from './components/apex/schedule/schedule.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { AdminUsersComponent } from './components/admin/admin-users/admin-users.component';
+
+import {AuthTokenHttpInterceptorProvider} from './shared/interceptor/auth-token.interceptor'
 
 @NgModule({
   declarations: [
@@ -46,7 +50,8 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     VerifyEmailComponent,
     ReservationComponent,
     LearningComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    AdminUsersComponent
   ],
   imports: [
     BrowserModule,
@@ -56,11 +61,13 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: 'home', component: HomeComponent },
       { path: '', component: HomeComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'schedule', component: ScheduleComponent },
+      { path: 'admin', component: AdminUsersComponent },
 
       //protected by sign in 
       { path: 'learning', component: LearningComponent, canActivate: [AuthGuard] },
@@ -76,7 +83,7 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
     NgbCollapseModule
   ],
 
-  providers: [AuthService],
+  providers: [AuthService, AuthTokenHttpInterceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

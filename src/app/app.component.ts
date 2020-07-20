@@ -74,9 +74,9 @@ export class AppComponent {
       element.classList.add('p-bottom');
     }
   }
-  listAcivablesLinks = ['#home', '#contact', '#schedule', '#learning', '#reservation', '#sign-in']
+  listActivablesLinks = ['#home', '#contact', '#schedule', '#learning', '#reservation', '#sign-in', "#admin"]
   setActive(url: string) {
-    this.listAcivablesLinks.forEach(element => {
+    this.listActivablesLinks.forEach(element => {
       let t = document.querySelector(element);
       if (t)
         t.classList.remove('active');

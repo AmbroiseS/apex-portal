@@ -1,5 +1,7 @@
 export const environment = {
-  production: true
+  production: true,
+  api_url : "https://us-central1-apex-mt.cloudfunctions.net/api"
+
 };
 export const firebaseConfig = {
   apiKey: "AIzaSyAJiTXotpPwA8yK2dIyiahbasmX8hJw9_4",

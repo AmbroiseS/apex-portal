@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  api_url : "http://localhost:5001/apex-mt/us-central1/api"
 };
 
 export const firebaseConfig = {
@@ -16,6 +17,7 @@ export const firebaseConfig = {
   appId: "1:195555973505:web:e713fe2537cedd0194f080",
   measurementId: "G-G9PHEPS9N3"
 };
+
 
 /*
  * For easier debugging in development mode, you can import the following file
