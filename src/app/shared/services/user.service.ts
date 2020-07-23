@@ -3,6 +3,7 @@ import { Observable, from } from 'rxjs';
 import { DisplayedUser } from '../../models/user';
 import { HttpClient } from '@angular/common/http';
 export type CreateUserRequest = { displayName: string, password: string, email: string, role: string }
+export type CreateUserRequestApexUser = { uid: string , displayedName: string}
 export type UpdateUserRequest = { uid: string } & CreateUserRequest
 import { map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment.prod';
@@ -35,6 +36,10 @@ private url = environment.api_url+"/users";
 
  create(user: CreateUserRequest) {
    return this.http.post(this.url, user)
+ }
+ 
+ createApexUser(user: CreateUserRequestApexUser) {
+   return this.http.post(this.url+'/apex', user)
  }
 
  edit(user: UpdateUserRequest) {

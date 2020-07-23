@@ -1,7 +1,6 @@
 import { Component, NgZone, HostListener } from '@angular/core';
 import { AuthService } from "./shared/services/auth.service";
 import { Router } from "@angular/router";
-import { DatabaseService } from './shared/services/database.service';
 import { filter } from "rxjs/operators";
 import { Event as NavigationEvent } from "@angular/router";
 import { NavigationStart } from "@angular/router";
@@ -17,7 +16,6 @@ export class AppComponent {
   toggleNavbar = true;
 
   constructor(
-    public dbService: DatabaseService,
     public authService: AuthService,
     public router: Router,
     public ngZone: NgZone
@@ -26,7 +24,7 @@ export class AppComponent {
       .pipe(filter((event: NavigationEvent) => { return (event instanceof NavigationStart); }))
       .subscribe(
         (event: NavigationStart) => {
-          this.forceBlackNav = event.url != "/home" && event.url!= "/";
+          this.forceBlackNav = event.url != "/home" && event.url != "/";
           this.drawNavBarColor();
           this.toggleNavbar = true;
           this.setActive(event.url);
@@ -85,7 +83,8 @@ export class AppComponent {
     if (url == '/')
       url = '/home'
     let t = document.querySelector('#' + url.replace('/', ''));
-    t.classList.add('active');
+    if (t)
+      t.classList.add('active');
 
 
   }

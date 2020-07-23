@@ -1,5 +1,5 @@
 import { Application } from "express";
-import { create, all, patch, get, remove } from "./controller";
+import { create, all, patch, get, remove, createApexUser } from "./controller";
 import { isAuthenticated } from "../auth/authenticated";
 import { isAuthorized } from "../auth/authorized";
 
@@ -9,6 +9,12 @@ export function routesConfig(app: Application) {
         create,
         isAuthenticated,
         isAuthorized({ hasRole: ['admin', 'manager'] })
+    );
+    
+    app.post('/users/apex',
+        createApexUser,
+        isAuthenticated,
+        isAuthorized({ hasRole: ['admin', 'manager', 'user'] })
     );
 
     app.get('/users', [

@@ -16,17 +16,17 @@ export class AdminUsersComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-     this.userService.users$.subscribe(item => {
-       this.users = item;
-       this.searchedUsers = this.users;
-       console.log(item);
-     }) 
+    this.userService.users$.subscribe(item => {
+      this.users = item;
+      this.searchedUsers = this.users;
+      console.log(item);
+    })
   }
 
   search(event) {
     let search = event.trim().toLowerCase();
     console.log(search);
-    if (search == ""){
+    if (search == "") {
       this.searchedUsers = this.users;
       return
     }

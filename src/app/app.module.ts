@@ -22,7 +22,6 @@ import {ContactComponent} from 'src/app/components/apex/contact/contact.componen
 import {SignUpComponent} from 'src/app/components/security/sign-up/sign-up.component'
 import {SignInComponent} from 'src/app/components/security/sign-in/sign-in.component'
 import {ForgotPasswordComponent} from 'src/app/components/security/forgot-password/forgot-password.component'
-import {VerifyEmailComponent} from 'src/app/components/security/verify-email/verify-email.component'
 
 import { AuthGuard } from "./shared/guard/auth.guard";
 import { SecureInnerPagesGuard } from "./shared/guard/secure-inner-pages.guard.ts.guard";
@@ -47,7 +46,6 @@ import {AuthTokenHttpInterceptorProvider} from './shared/interceptor/auth-token.
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent,
     ReservationComponent,
     LearningComponent,
     ScheduleComponent,
@@ -76,8 +74,7 @@ import {AuthTokenHttpInterceptorProvider} from './shared/interceptor/auth-token.
       //protected when signed in
       { path: 'sign-in', component: SignInComponent, canActivate: [SecureInnerPagesGuard] },
       { path: 'register-user', component: SignUpComponent, canActivate: [SecureInnerPagesGuard] },
-      { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] },
-      { path: 'verify-email-address', component: VerifyEmailComponent, canActivate: [SecureInnerPagesGuard] }]
+      { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] } ]
     ),
     FontAwesomeModule,
     NgbCollapseModule

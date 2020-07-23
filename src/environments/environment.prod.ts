@@ -1,6 +1,8 @@
 export const environment = {
   production: true,
-  api_url : "https://us-central1-apex-mt.cloudfunctions.net/api"
+  api_url : "http://localhost:5001/apex-mt/us-central1/api"
+
+ // api_url : "https://us-central1-apex-mt.cloudfunctions.net/api"
 
 };
 export const firebaseConfig = {
