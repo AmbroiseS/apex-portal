@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { User, DisplayedUser } from "../../models/user";
+import { GoogleUser } from "../../models/user";
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -24,6 +24,8 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
+      //  userService.
+
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
@@ -79,7 +81,7 @@ export class AuthService {
     return user !== null;
   }
 
-  getUser(): User {
+  getUser(): GoogleUser {
     return JSON.parse(localStorage.getItem('user'));
   }
 

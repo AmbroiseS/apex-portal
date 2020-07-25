@@ -1,9 +1,9 @@
 import { Request, Response } from "express";
 import * as admin from 'firebase-admin'
-import { ApexUser } from "../model/user";
-import { Status } from "../model/user";
+import { ApexUser, Status } from "../model/user";
 
 const path = `/users/`;
+const functions = require("firebase-functions");
 
 export async function create(req: Request, res: Response) {
     try {
@@ -28,7 +28,6 @@ export async function create(req: Request, res: Response) {
 
 export async function createApexUser(req: Request, res: Response) {
     try {
-        console.log(req.body);
         const { uid, displayedName } = req.body;
 
         if (!uid) {
@@ -44,14 +43,34 @@ export async function createApexUser(req: Request, res: Response) {
     }
 }
 
+export async function updateApexUser(req: Request, res: Response) {
+    try {
+        const { uid, displayedName, status } = req.body;
+
+        if (!uid && !(displayedName || status)) {
+            return res.status(400).send({ message: 'Missing fields' })
+        }
+
+        const toUpdate: any = {}
+        if (displayedName) {
+            toUpdate.displayedName = displayedName;
+        }
+        if (status) {
+            toUpdate.status = status;
+        }
+
+        await admin.database().ref(path + uid + "/displayed").update(toUpdate)
+        return res.status(201).send({ uid })
+    } catch (err) {
+        return handleError(res, err)
+    }
+}
+
 async function saveApexUser(displayed: ApexUser) {
     admin.database().ref(path + displayed.uid).set({
         displayed
-    });
-}
+    }).catch(error => error);
 
-export async function getUserByUid(uid: string, prom: (a: admin.database.DataSnapshot, b?: string | null) => any) {
-    return admin.database().ref(path + uid).once('value', prom)
 }
 
 export async function all(req: Request, res: Response) {
@@ -75,15 +94,19 @@ function mapUser(user: admin.auth.UserRecord) {
         lastSignInTime: user.metadata.lastSignInTime,
         creationTime: user.metadata.creationTime
     }
-    let apexUser = null;
 
-    getUserByUid(user.uid, data => {
-        apexUser = data;
+    admin.database().ref(path + user.uid ).on("value", function (nameSnapshot) {
+        functions.logger.log("fetch user :" + user.uid  + JSON.stringify(nameSnapshot.val()), nameSnapshot.val());
+        return { googleUser: googleUser, apexUser: nameSnapshot.val() };
+
+    }, function (errorObject) {
+        functions.logger.log("error fetch user :" + user.uid, errorObject);
+        return { googleUser, apexUser: null };
+
     });
 
-    return { googleUser, apexUser };
-
 }
+
 
 export async function get(req: Request, res: Response) {
     try {

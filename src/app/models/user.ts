@@ -1,22 +1,25 @@
 export type Role = 'admin' | 'manager' | 'user';
 
-export interface User {
+export interface GoogleUser {
    uid: string;
+   role?: Role;
    email: string;
-   displayName: string;
-   photoURL: string;
-   emailVerified: boolean;
+   lastSignInTime: string;
+   creationTime: string;
 }
 
-export interface DisplayedUser {
-   uid: string;
-   displayName: string;
-   lastSignInTime ?:string;
-   creationTime ?:string;
-   role ?: Role;
-   email: string;
-   approvedByStaff : String;
-   
+export interface ApiUser {
+   apexUser: ApexUser;
+   googleUser: GoogleUser;
+
 }
+
+export interface ApexUser {
+   uid: string;
+   status: Status;
+   displayedName?: string
+
+}
+export enum Status { PENDING, APPROVED, DENIED }
 
 

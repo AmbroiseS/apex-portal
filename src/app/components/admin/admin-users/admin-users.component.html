@@ -22,13 +22,13 @@
                 <tbody>
                     <tr *ngFor="let u of searchedUsers;let i = index">
                         <th scope="row">{{i}}</th>
-                        <td>{{u.email}}</td>
-                        <td>{{u.displayName}}</td>
-                        <td>{{u.displayName}}</td>
-                        <td>{{u.displayName}}</td>
-                        <td>{{u.role}}</td>
-                        <td>{{u.creationTime}}</td>
-                        <td>{{u.lastSignInTime}}</td>
+                        <td>{{u.googleUser.email}}</td>
+                        <td>{{u.googleUser.displayName}}</td>
+                        <td>{{u.googleUser.displayName}}</td>
+                        <td>{{u.googleUser.displayName}}</td>
+                        <td>{{u.googleUser.role}}</td>
+                        <td>{{u.googleUser.creationTime}}</td>
+                        <td>{{u.googleUser.lastSignInTime}}</td>
                     </tr>
 
                 </tbody>
