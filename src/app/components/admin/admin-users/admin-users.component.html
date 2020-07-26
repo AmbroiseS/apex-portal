@@ -6,7 +6,7 @@
             <button class="btn btn-outline-success my-2 my-sm-0"  type="submit">Search User</button>
         </form>
     <div class="col-8 ">
-            <table class="table table-sm table-dark table-hover">
+            <table class="table table-dark table-hover">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -24,8 +24,11 @@
                         <th scope="row">{{i}}</th>
                         <td>{{u.googleUser.email}}</td>
                         <td>{{u.apexUser.displayedName}}</td>
-                        <td>{{displayStatus(u.apexUser.status)}}</td>
-                        <td>{{u.googleUser.displayName}}</td>
+                        <td><span [ngClass]="{'badge':true, 'badge-warning': u.apexUser.status==0, 'badge-success': u.apexUser.status==1,'badge-danger': u.apexUser.status==2 }">{{displayStatus(u.apexUser.status)}}</span></td>
+                        <td>
+                            <button *ngIf="u.apexUser.status===0 || u.apexUser.status===2"  type="button" (click)="changeStatus(u, 1)" class="btn btn-outline-primary mr-2">Validate</button>
+                            <button *ngIf="u.apexUser.status===0 || u.apexUser.status===1" type="button" (click)="changeStatus(u, 2)" class="btn btn-outline-danger">Deny</button>
+                        </td>
                         <td>{{u.googleUser.role}}</td>
                         <td>{{u.googleUser.creationTime}}</td>
                         <td>{{u.googleUser.lastSignInTime}}</td>

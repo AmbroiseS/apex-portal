@@ -72,10 +72,19 @@ function mapAllToApexUsers(snapshot: any): ApexUser[] {
 function mapToApexUser(snapShot: any): ApexUser {
     const apexUser = {
         uid: snapShot.uid,
-        status: Status.PENDING,
+        status: getStatus(snapShot.status),
         displayedName: snapShot.displayedName
     }
     return apexUser;
+}
+
+function getStatus(stat: number): Status {
+    switch (stat) {
+        case 0: return Status.PENDING;
+        case 1: return Status.APPROVED;
+        case 2: return Status.DENIED;
+        default: return Status.PENDING;
+    }
 }
 
 export async function saveApexUser(displayed: ApexUser) {

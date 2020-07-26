@@ -16,11 +16,11 @@ export class AdminUsersComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-     this.userService.users$.subscribe(item => {
-      this.users = item;
-      this.searchedUsers = this.users;
-      console.log(item);
-    }) 
+      this.userService.users$.subscribe(item => {
+        this.users = item;
+        this.searchedUsers = this.users;
+        console.log(item);
+      })
   }
 
   search(event) {
@@ -46,8 +46,23 @@ export class AdminUsersComponent implements OnInit {
       case Status.DENIED:
         return "Denied"
     }
+  }
 
-
+  changeStatus(user: ApiUser, status: Status) {
+    this.userService.updateApexUser$({ uid: user.apexUser.uid, status: status }).subscribe(resp => {
+      this.users.map(item => {
+        if (item.googleUser.uid === user.apexUser.uid) {
+          item.apexUser.status = status;
+        }
+      });
+      this.searchedUsers.map(item => {
+        if (item.googleUser.uid === user.apexUser.uid) {
+          item.apexUser.status = status;
+        }
+      });
+    }, error => {
+      //todo toast
+    });
   }
 
 }
