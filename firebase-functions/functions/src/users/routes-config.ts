@@ -1,7 +1,8 @@
 import { Application } from "express";
-import { create, all, patch, get, remove, createApexUser, updateApexUser } from "./controller";
+import { create, all, patch, get, remove } from "./controller";
 import { isAuthenticated } from "../auth/authenticated";
 import { isAuthorized } from "../auth/authorized";
+import { createApexUser, updateApexUser } from "./apex-user";
 
 
 export function routesConfig(app: Application) {

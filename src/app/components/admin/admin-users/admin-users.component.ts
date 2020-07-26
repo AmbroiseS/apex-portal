@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/services/user.service'
-import { ApiUser } from 'src/app/models/user';
+import { ApiUser, Status } from 'src/app/models/user';
 
 @Component({
   selector: 'app-admin-users',
@@ -16,11 +16,11 @@ export class AdminUsersComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.users$.subscribe(item => {
+     this.userService.users$.subscribe(item => {
       this.users = item;
       this.searchedUsers = this.users;
       console.log(item);
-    })
+    }) 
   }
 
   search(event) {
@@ -35,6 +35,19 @@ export class AdminUsersComponent implements OnInit {
     let searchByDisplayName = userss.filter(it => it.apexUser?.displayedName.toLowerCase().indexOf(search) > -1);
 
     this.searchedUsers = Array.from(new Set(searchByEmail.concat(searchByDisplayName)));
+  }
+
+  displayStatus(y: Status) {
+    switch (y) {
+      case Status.PENDING:
+        return "Pending"
+      case Status.APPROVED:
+        return "Approved"
+      case Status.DENIED:
+        return "Denied"
+    }
+
+
   }
 
 }

@@ -23,8 +23,8 @@
                     <tr *ngFor="let u of searchedUsers;let i = index">
                         <th scope="row">{{i}}</th>
                         <td>{{u.googleUser.email}}</td>
-                        <td>{{u.googleUser.displayName}}</td>
-                        <td>{{u.googleUser.displayName}}</td>
+                        <td>{{u.apexUser.displayedName}}</td>
+                        <td>{{displayStatus(u.apexUser.status)}}</td>
                         <td>{{u.googleUser.displayName}}</td>
                         <td>{{u.googleUser.role}}</td>
                         <td>{{u.googleUser.creationTime}}</td>
