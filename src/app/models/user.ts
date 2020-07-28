@@ -4,6 +4,7 @@ export interface GoogleUser {
    uid: string;
    role?: Role;
    email: string;
+   photoURL? :string;
    lastSignInTime: string;
    creationTime: string;
 }

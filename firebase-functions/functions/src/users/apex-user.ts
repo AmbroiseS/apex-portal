@@ -51,17 +51,15 @@ export async function getAllApexUser(): Promise<ApexUser[]> {
     return admin.database().ref(usersPath2).once('value').then(snapshot => mapAllToApexUsers(snapshot.val()));
 }
 
-export async function getApexUser(uid: string): Promise<ApexUser> {
+export async function getApexUser(uid: string): Promise<ApexUser | null> {
     return admin.database().ref(usersPath + uid + "/displayed").once("value").then(snap => mapToApexUser(snap.val()))
         .catch(e => {
             functions.logger.log("failed  getApexUser", e);
             return new Promise<ApexUser>((i => null));
-        }
-
-        )
+        })
 }
 
-function mapAllToApexUsers(snapshot: any): ApexUser[] {
+function mapAllToApexUsers(snapshot: any): ApexUser []  {
     functions.logger.log("mapAllToApexUsers", snapshot);
 
     const returns: ApexUser[] = Object.keys(snapshot).map(item => mapToApexUser(snapshot[item].displayed))
@@ -69,13 +67,16 @@ function mapAllToApexUsers(snapshot: any): ApexUser[] {
     return returns;
 }
 
-function mapToApexUser(snapShot: any): ApexUser {
-    const apexUser = {
-        uid: snapShot.uid,
-        status: getStatus(snapShot.status),
-        displayedName: snapShot.displayedName
+function mapToApexUser(snapShot: any): ApexUser  {
+    if (snapShot) {
+        const apexUser = {
+            uid: snapShot.uid,
+            status: getStatus(snapShot.status),
+            displayedName: snapShot.displayedName
+        }
+        return apexUser;
     }
-    return apexUser;
+    return new ApexUser();
 }
 
 function getStatus(stat: number): Status {

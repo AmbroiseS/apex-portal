@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import * as admin from 'firebase-admin'
-import {  GoogleUser, ApexUser, ApiUser } from "../model/user";
-import { getAllApexUser } from "./apex-user";
+import { GoogleUser, ApexUser, ApiUser } from "../model/user";
+import { getAllApexUser, getApexUser } from "./apex-user";
 const functions = require("firebase-functions");
 
 export async function create(req: Request, res: Response) {
@@ -35,8 +35,8 @@ export async function all(req: Request, res: Response) {
         const listApexUsers = await getAllApexUser()
         functions.logger.log(" all listApexUsers", listApexUsers);
 
-      //  return res.status(200).send(users)
-        return res.status(200).send({users : getApiUsers(users, listApexUsers)} )
+        //  return res.status(200).send(users)
+        return res.status(200).send({ users: getApiUsers(users, listApexUsers) })
     } catch (err) {
         functions.logger.log("failed  all", err);
         return handleError(res, err)
@@ -62,6 +62,7 @@ function mapUser(user: admin.auth.UserRecord): GoogleUser {
         uid: user.uid,
         email: user.email || '',
         role: role,
+        photoURL: user.photoURL,
         lastSignInTime: user.metadata.lastSignInTime,
         creationTime: user.metadata.creationTime
     }
@@ -72,7 +73,9 @@ export async function get(req: Request, res: Response) {
     try {
         const { id } = req.params
         const user = await admin.auth().getUser(id)
-        return res.status(200).send({ user: mapUser(user) })
+        const googleUser = mapUser(user);
+        const apexUser = await getApexUser(id);
+        return res.status(200).send({ user: { googleUser: googleUser, apexUser: apexUser } })
     } catch (err) {
         return handleError(res, err)
     }

@@ -17,11 +17,11 @@ import { firebaseConfig } from '../environments/environment';
 
 import { AuthService } from 'src/app/shared/services/auth.service';
 
-import {HomeComponent} from 'src/app/components/apex/home/home.component'
-import {ContactComponent} from 'src/app/components/apex/contact/contact.component'
-import {SignUpComponent} from 'src/app/components/security/sign-up/sign-up.component'
-import {SignInComponent} from 'src/app/components/security/sign-in/sign-in.component'
-import {ForgotPasswordComponent} from 'src/app/components/security/forgot-password/forgot-password.component'
+import { HomeComponent } from 'src/app/components/apex/home/home.component'
+import { ContactComponent } from 'src/app/components/apex/contact/contact.component'
+import { SignUpComponent } from 'src/app/components/security/sign-up/sign-up.component'
+import { SignInComponent } from 'src/app/components/security/sign-in/sign-in.component'
+import { ForgotPasswordComponent } from 'src/app/components/security/forgot-password/forgot-password.component'
 
 import { AuthGuard } from "./shared/guard/auth.guard";
 import { SecureInnerPagesGuard } from "./shared/guard/secure-inner-pages.guard.ts.guard";
@@ -32,7 +32,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 import { AdminUsersComponent } from './components/admin/admin-users/admin-users.component';
 
-import {AuthTokenHttpInterceptorProvider} from './shared/interceptor/auth-token.interceptor'
+import { AuthTokenHttpInterceptorProvider } from './shared/interceptor/auth-token.interceptor';
+import { PendingApprovalComponent } from './components/security/pending-approval/pending-approval.component'
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import {AuthTokenHttpInterceptorProvider} from './shared/interceptor/auth-token.
     ReservationComponent,
     LearningComponent,
     ScheduleComponent,
-    AdminUsersComponent
+    AdminUsersComponent,
+    PendingApprovalComponent
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import {AuthTokenHttpInterceptorProvider} from './shared/interceptor/auth-token.
       { path: '', component: HomeComponent },
       { path: 'contact', component: ContactComponent },
       { path: 'schedule', component: ScheduleComponent },
-      { path: 'admin', component: AdminUsersComponent },
+      { path: 'approval', component: PendingApprovalComponent },
+      { path: 'admin', component: AdminUsersComponent, canActivate: [AuthGuard] },
 
       //protected by sign in 
       { path: 'learning', component: LearningComponent, canActivate: [AuthGuard] },
@@ -74,7 +77,7 @@ import {AuthTokenHttpInterceptorProvider} from './shared/interceptor/auth-token.
       //protected when signed in
       { path: 'sign-in', component: SignInComponent, canActivate: [SecureInnerPagesGuard] },
       { path: 'register-user', component: SignUpComponent, canActivate: [SecureInnerPagesGuard] },
-      { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] } ]
+      { path: 'forgot-password', component: ForgotPasswordComponent, canActivate: [SecureInnerPagesGuard] }]
     ),
     FontAwesomeModule,
     NgbCollapseModule

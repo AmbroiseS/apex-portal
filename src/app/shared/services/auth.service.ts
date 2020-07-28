@@ -1,5 +1,5 @@
 import { Injectable, NgZone } from '@angular/core';
-import { GoogleUser } from "../../models/user";
+import { GoogleUser, ApiUser, Status, ApexUser } from "../../models/user";
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
@@ -11,7 +11,7 @@ import { UserService } from './user.service';
 })
 
 export class AuthService {
-  userData: any; // Save logged in user data
+  userData: ApiUser; // Save logged in user data
 
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
@@ -24,16 +24,28 @@ export class AuthService {
     logged in and setting up null when logged out */
     this.afAuth.authState.subscribe(user => {
       if (user) {
-      //  userService.
-
-        this.userData = user;
-        localStorage.setItem('user', JSON.stringify(this.userData));
-        JSON.parse(localStorage.getItem('user'));
+        //  userService.
+        this.getApexUser(user);
       } else {
         localStorage.setItem('user', null);
-        JSON.parse(localStorage.getItem('user'));
       }
     })
+  }
+
+  getApexUser(user) {
+    this.userService.user$(user.uid).subscribe(apiUser => {
+      console.log("here")
+      console.log(apiUser)
+      this.userData = apiUser;
+      localStorage.setItem('user', JSON.stringify(this.userData));
+
+    })
+  }
+
+  createApexUser(result, displayedName) {
+    this.userService.createApexUser({ uid: result.user.uid, displayedName: displayedName }).subscribe(item => {
+      console.log(item);
+    });
   }
 
   // Sign in with email/password
@@ -53,9 +65,8 @@ export class AuthService {
     return this.afAuth.createUserWithEmailAndPassword(email, password)
       .then((result) => {
         console.log(result)
-        this.userService.createApexUser({uid :result.user.uid, displayedName: displayedName}).subscribe(item => {
-          console.log(item);
-        });
+        this.createApexUser(result, displayedName);
+
         /* Call the SendVerificaitonMail() function when new user sign
         up and returns promise */
         this.router.navigate(['home']);
@@ -81,7 +92,21 @@ export class AuthService {
     return user !== null;
   }
 
-  getUser(): GoogleUser {
+  userRole(): string {
+    const user = JSON.parse(localStorage.getItem('user'));
+    if (!user)
+      return "user"
+    return user.googleUser.role;
+  }
+
+  userStatus(): Status {
+    const user: ApiUser = JSON.parse(localStorage.getItem('user'));
+    if (!user)
+      return Status.PENDING;
+    return user.apexUser.status;
+  }
+
+  getUser(): ApiUser {
     return JSON.parse(localStorage.getItem('user'));
   }
 
@@ -95,6 +120,11 @@ export class AuthService {
   authLogin(provider) {
     return this.afAuth.signInWithPopup(provider)
       .then((result) => {
+
+        if (result.additionalUserInfo.isNewUser) {
+          this.createApexUser(result, result.user.displayName);
+        }
+
         this.ngZone.run(() => {
           this.router.navigate(['home']);
         })

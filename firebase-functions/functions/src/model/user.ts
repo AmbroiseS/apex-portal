@@ -7,6 +7,7 @@ export interface GoogleUser {
     uid: string;
     role?: string;
     email: string;
+    photoURL? :string;
     lastSignInTime: string;
     creationTime: string;
  }
@@ -17,9 +18,9 @@ export interface GoogleUser {
  
  }
  
- export interface ApexUser {
-    uid: string;
-    status: Status;
-    displayedName?: string
+ export class ApexUser {
+    uid: string = '';
+    status: Status = Status.PENDING;
+    displayedName?: string = '';
  
  }

@@ -27,22 +27,22 @@
       </li>
 
       <li class="nav-item " id="learning">
-        <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false}"
+        <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false || authService.userStatus()!==1}"
           routerLink="/learning">Apprentissage</a>
       </li>
 
       <li class="nav-item " id="reservation">
-        <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false}"
+        <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true, 'crossed' : authService.isLoggedIn==false || authService.userStatus()!==1}"
           routerLink="/reservation">Reservations</a>
       </li>
-       <li class="nav-item " id="admin">
-        <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true }"
-          routerLink="/admin">Admin</a>
+      <li *ngIf="authService.isLoggedIn && authService.userRole()=='admin'" class="nav-item " id="admin">
+        <a [ngClass]="{'d-md-inline-block':true,  'nav-item':true, 'nav-link':true }" routerLink="/admin">Admin</a>
       </li>
     </ul>
 
-    <img *ngIf="authService.isLoggedIn" class="rounded-logo-user navbar-right d-none d-lg-block"
-      src="{{authService.getUser().photoURL}}" alt="userImage">
+    <img *ngIf="authService.isLoggedIn && authService.getUser().googleUser.photoURL"
+      class="rounded-logo-user navbar-right d-none d-lg-block" src="{{authService.getUser().googleUser.photoURL}}"
+      alt="userImage">
 
     <ul *ngIf="!authService.isLoggedIn" class="nav navbar-nav navbar-right">
       <li class="nav-item" id="sign-in">
@@ -55,7 +55,7 @@
 
         <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
-          {{authService.getUser().displayName}}
+          {{authService.getUser().apexUser.displayedName}}
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" (click)="authService.signOut()">Log out</a>
